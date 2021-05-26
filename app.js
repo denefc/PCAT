@@ -1,25 +1,24 @@
-const express = require('express');
-const path=require('path');
+const express = require("express");
+const ejs = require("ejs");
+const path = require("path");
 
 const app = express();
 
-// const myLogger=(req,res,next)=>{
-//   console.log(req)
-//   next();
-// }
+//templates engine
+app.set("view engine", "ejs");
 
 //mıddleware
-app.use(express.static('public'))
-// app.use(myLogger);
+app.use(express.static("public"));
 
-app.get('/', (req, res) => {
-  // const photo = {
-  //   id: 1,
-  //   name: "Photo Name",
-  //   description: "Photo description"
-  // }
-  res.sendFile(path.resolve(__dirname,"temp/index.html"))
-})
+app.get("/", (req, res) => {
+  res.render("index");
+});
+app.get("/about", (req, res) => {
+  res.render("about");
+});
+app.get("/add", (req, res) => {
+  res.render("add");
+});
 
 const port = 3000;
 app.listen(port, () => {
